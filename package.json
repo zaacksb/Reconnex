@@ -1,0 +1,46 @@
+{
+  "name": "reconnex",
+  "version": "1.0.0",
+  "description": "Library providing a persistent WebSocket connection with automatic reconnection and ping functionality.",
+  "main": "./lib/index.js",
+  "files": [
+    "lib/**/*"
+  ],
+  "scripts": {
+    "build": "tsc && pnpm pkg:local",
+    "pkg:local": "pnpm pack --pack-destination ../package"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zaacksb/reconnex.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "ZackSB",
+    "email": "zaacksb@users.noreply.github.com",
+    "url": "https://github.com/zaacksb"
+  },
+  "engines": {
+    "node": ">=18.0"
+  },
+  "keywords": [
+    "Zacksb",
+    "WebSocket",
+    "reconnect",
+    "persistent",
+    "ws"
+  ],
+  "bugs": {
+    "url": "https://github.com/zaacksb/reconnex/issues"
+  },
+  "homepage": "https://github.com/zaacksb/reconnex#readme",
+  "devDependencies": {
+    "@types/node": "^12.20.11",
+    "@types/ws": "^8.5.10",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "ws": "^8.15.1"
+  }
+}
