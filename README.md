@@ -1,6 +1,6 @@
 <br/>
 <p align="center">
-  <a href="https://github.com/ZackSB/Reconnex">
+  <a href="https://github.com/zaacksb/Reconnex">
     <img src="https://i.imgur.com/vLIaIBy.png" alt="Logo" width="400" height="200">
   </a>
 
@@ -11,12 +11,12 @@
 A simple Node JS library for connecting to websocket, with auto reconnect and utilities
     <br/>
     <br/>
-    <a href="https://github.com/ZackSB/Reconnex"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/zaacksb/Reconnex/blob/main/README.md"><strong>Explore the docs »</strong></a>
     <br/>
     <br/>
-    <a href="https://github.com/ZackSB/Reconnex/issues">Report Bug</a>
+    <a href="https://github.com/zaacksb/Reconnex/issues">Report Bug</a>
     .
-    <a href="https://github.com/ZackSB/Reconnex/issues">Request Feature</a>
+    <a href="https://github.com/zaacksb/Reconnex/issues">Request Feature</a>
   </p>
 </p>
 
@@ -137,39 +137,39 @@ reconnex.on('text', (text) => {
 - `disconnect`
   Disconnects the WebSocket connection.
   `js
-     reconnex.disconnect('Optional reason');
-   `
+   reconnex.disconnect('Optional reason');
+ `
 - `open`
   Opens the WebSocket connection if not already opened.
   `js
-     reconnex.open()
-   `
+   reconnex.open()
+ `
 - `send`
   Sends text or binary data over the WebSocket connection.
   `js
-     reconnex.send('Sample message');
-   `
+   reconnex.send('Sample message');
+ `
 - `json`
   Sends JSON data over the WebSocket connection.
   `js
-     reconnex.json({ key: 'value' });
-   `
+   reconnex.json({ key: 'value' });
+ `
 - `sendOnConnect` and `removeSendOnConnect`
   Adds and removes strings to be sent on connection.
   `js
-     reconnex.sendOnConnect('Authentication');
-     reconnex.removeSendOnConnect('Authentication');
-   `
+   reconnex.sendOnConnect('Authentication');
+   reconnex.removeSendOnConnect('Authentication');
+ `
 
 - `isConnected`
   Checks if the WebSocket connection is open.
   `js
-     const isConnected = reconnex.isConnected();
-   `
+   const isConnected = reconnex.isConnected();
+ `
 
 ## License
 
-Distributed under the MIT License. See [LICENSE](https://github.com/ZackSB/Reconnex/blob/main/LICENSE.md) for more information.
+Distributed under the MIT License. See [LICENSE](https://github.com/zaacksb/Reconnex/blob/main/LICENSE) for more information.
 
 ## Authors
 
