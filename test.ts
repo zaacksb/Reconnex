@@ -11,39 +11,41 @@ const authenticationPayloads = [
   `JOIN #${joinChannel}`
 ]
 
-const reconex = new Reconnex({
+const reconnex = new Reconnex({
   url: twitchChatWs,
-  ping: {
-    data: 'PING',
-    interval: 4 * 60 * 1000
+  ping: { // Use this object when you want to automate ping
+    data: 'PING', // Data sent with each ping
+    interval: 4 * 60 * 1000 // Interval time between each sending
   },
+  options: {}, // Ws connection options
   reconnect: {
-    maxAttempts: -1
+    maxAttempts: -1, // Maximum attempts to reconnect, use -1 for infinite, default is 10
+    connectTimeout: 10 * 1000 // Waiting time to try to reconnect. By default it is 5 seconds
   }
 })
-reconex.open()
-authenticationPayloads.forEach(payload => reconex.sendOnConnect(payload))
-reconex.on('send', (data) => {
+reconnex.open()
+authenticationPayloads.forEach(payload => reconnex.sendOnConnect(payload))
+reconnex.on('send', (data) => {
   console.log(`Data sent: ${data}`)
 })
-reconex.on('error', (err) => {
+reconnex.on('error', (err) => {
   if (err.code == 'ENOTFOUND') return console.log('No Internet Connection')
   console.log(err)
 })
-reconex.on('open', (url) => {
+reconnex.on('open', (url) => {
   console.log(`Connected at ${url}`)
 })
-reconex.on('close', (code, reason) => {
+reconnex.on('close', (code, reason) => {
   console.log(`Websocket disconnected with code ${code} ${reason}`)
 })
-reconex.on('retry', (attempt, max) => {
+reconnex.on('retry', (attempt, max) => {
   console.log(`Trying to reconnect ${attempt} of ${max}`)
 })
-reconex.on('max_attempt', () => {
+reconnex.on('max_attempt', () => {
   console.log('Reconnect attempt limit reached')
 
 })
-reconex.on('text', (text) => {
+reconnex.on('text', (text) => {
   console.log(`Text Received: ${text}`)
 })
 

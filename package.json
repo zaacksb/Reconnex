@@ -7,8 +7,9 @@
     "lib/**/*"
   ],
   "scripts": {
-    "build": "tsc && pnpm pkg:local",
-    "pkg:local": "pnpm pack --pack-destination ../package"
+    "build": "tsc && npm pkg:local",
+    "pkg:local": "npm pack --pack-destination ../package",
+    "test": "npx tsx watch test.ts"
   },
   "repository": {
     "type": "git",
