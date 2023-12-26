@@ -1,13 +1,13 @@
 {
   "name": "reconnex",
-  "version": "1.0.0",
-  "description": "Library providing a persistent WebSocket connection with automatic reconnection and ping functionality.",
+  "version": "1.0.1",
+  "description": "A simple Node JS library for connecting to websocket, with auto reconnect and utilities.",
   "main": "./lib/index.js",
   "files": [
     "lib/**/*"
   ],
   "scripts": {
-    "build": "tsc && npm pkg:local",
+    "build": "tsc && npm run pkg:local",
     "pkg:local": "npm pack --pack-destination ../package",
     "test": "npx tsx watch test.ts"
   },
@@ -20,9 +20,6 @@
     "name": "ZackSB",
     "email": "zaacksb@users.noreply.github.com",
     "url": "https://github.com/zaacksb"
-  },
-  "engines": {
-    "node": ">=18.0"
   },
   "keywords": [
     "Zacksb",
