@@ -132,40 +132,40 @@ reconnex.on('text', (text) => {
 - `waitTwitchWSConnected`
   Waits until the WebSocket connection is open.
   ```js
-  await reconex.waitTwitchWSConnected()
+  await reconnex.waitTwitchWSConnected()
   ```
 - `disconnect`
   Disconnects the WebSocket connection.
   `js
-       reconex.disconnect('Optional reason');
-     `
+     reconnex.disconnect('Optional reason');
+   `
 - `open`
   Opens the WebSocket connection if not already opened.
   `js
-       reconex.open()
-     `
+     reconnex.open()
+   `
 - `send`
   Sends text or binary data over the WebSocket connection.
   `js
-       reconex.send('Sample message');
-     `
+     reconnex.send('Sample message');
+   `
 - `json`
   Sends JSON data over the WebSocket connection.
   `js
-       reconex.json({ key: 'value' });
-     `
+     reconnex.json({ key: 'value' });
+   `
 - `sendOnConnect` and `removeSendOnConnect`
   Adds and removes strings to be sent on connection.
   `js
-       reconex.sendOnConnect('Authentication');
-       reconex.removeSendOnConnect('Authentication');
-     `
+     reconnex.sendOnConnect('Authentication');
+     reconnex.removeSendOnConnect('Authentication');
+   `
 
 - `isConnected`
   Checks if the WebSocket connection is open.
   `js
-       const isConnected = reconex.isConnected();
-     `
+     const isConnected = reconnex.isConnected();
+   `
 
 ## License
 
