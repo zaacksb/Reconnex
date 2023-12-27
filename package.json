@@ -1,6 +1,6 @@
 {
   "name": "reconnex",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A simple Node JS library for connecting to websocket, with auto reconnect and utilities.",
   "main": "./lib/index.js",
   "files": [

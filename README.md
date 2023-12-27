@@ -178,3 +178,7 @@ Distributed under the MIT License. See [LICENSE](https://github.com/zaacksb/Reco
 ## Acknowledgements
 
 - [zacksb](https://github.com/zaacksb)
+
+<h3 align="left">Support:</h3>
+<p><a href="https://www.buymeacoffee.com/zacksb"> <img align="left" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="50" width="210" alt="buy me a coffe" /></a></p>
+<p><a href="https://livepix.gg/zvods"> <img align="left" src="https://pbs.twimg.com/profile_images/1499159563081244672/tWvzZWKI_400x400.png" height="50" width="50" alt="Donate with livepix" /></a></p><br><br>
