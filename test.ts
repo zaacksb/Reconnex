@@ -49,3 +49,11 @@ reconnex.on('text', (text) => {
   console.log(`Text Received: ${text}`)
 })
 
+
+
+setTimeout(() => {
+  reconnex.disconnect()
+  setTimeout(() => {
+    reconnex.open()
+  }, 10000)
+}, 10000)

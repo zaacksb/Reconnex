@@ -74,7 +74,7 @@ export default class Reconnex extends EventEmitter {
       clearInterval(intervalPing)
       this.#currentRetries++
       this.emit('close', code, reason.toString())
-      if (code !== 111) {
+      if (code !== 4452) {
         if (this.#currentRetries <= this.#reconnectOpts.maxAttempts || this.#reconnectOpts.maxAttempts == -1) {
           await sleep(this.#reconnectOpts.connectTimeout)
           this.emit('retry', this.#currentRetries, this.#reconnectOpts.maxAttempts == -1 ? Infinity : this.#reconnectOpts.maxAttempts)
@@ -97,7 +97,7 @@ export default class Reconnex extends EventEmitter {
   }
 
 
-  public disconnect = (reason?: string) => { this.#ws?.close(111, reason) }
+  public disconnect = (reason?: string) => { this.#ws?.close(4452, reason) }
   public open = () => !this.#connectionOpenned && this.connect()
   public send = async (text: string | Buffer) => {
     await this.waitTwitchWSConnected()

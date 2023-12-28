@@ -1,6 +1,6 @@
 {
   "name": "reconnex",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A simple Node JS library for connecting to websocket, with auto reconnect and utilities.",
   "main": "./lib/index.js",
   "files": [
@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "build": "tsc && npm run pkg:local",
-    "pkg:local": "npm pack --pack-destination ../package",
+    "pkg:local": "npm pack --pack-destination ../",
     "test": "npx tsx watch test.ts"
   },
   "repository": {
