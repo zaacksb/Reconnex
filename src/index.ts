@@ -68,7 +68,7 @@ export class Reconnex extends EventEmitter {
     })
     this.#ws?.on('message', (buffer) => {
       this.emit('message', buffer)
-      this.emit('text', buffer.toString())
+      this.emit('text', new TextDecoder().decode(buffer as any))
     })
     this.#ws?.on('close', async (code, reason) => {
       clearInterval(intervalPing)
@@ -108,6 +108,11 @@ export class Reconnex extends EventEmitter {
     await this.waitTwitchWSConnected()
     this.#ws?.send?.(JSON.stringify(data))
     this.emit('send', JSON.stringify(data))
+  }
+
+  public sendJSONBinary = (data: any) => {
+    var encoder = new TextEncoder();
+    this.#ws?.send(encoder.encode(JSON.stringify(data)) as any);
   }
 
   public sendOnConnect = (content?: string) => {

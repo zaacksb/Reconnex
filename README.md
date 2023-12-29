@@ -154,6 +154,11 @@ reconnex.on('text', (text) => {
  ```js
   reconnex.json({ key: 'value' });
  ```
+ * ``sendJSONBinary``
+  Transforms JSON data into binary and sends it over the WebSocket connection.
+ ```js
+  reconnex.sendJSONBinary({ key: 'value' });
+ ```
 * ```sendOnConnect``` and ```removeSendOnConnect```
   Adds and removes strings to be sent on connection.
  ```js

@@ -1,7 +1,6 @@
-export const twitchChatWs = "wss://irc-ws.chat.twitch.tv/"
-import Reconnex from './src/index'
-
-const joinChannel = 'zvods'
+import { Reconnex } from './src/index'
+const twitchChatWs = "wss://irc-ws.chat.twitch.tv/"
+const joinChannel = 'pedrosemfreio'
 
 const authenticationPayloads = [
   'CAP REQ :twitch.tv/tags twitch.tv/commands	',
@@ -48,12 +47,3 @@ reconnex.on('max_attempt', () => {
 reconnex.on('text', (text) => {
   console.log(`Text Received: ${text}`)
 })
-
-
-
-setTimeout(() => {
-  reconnex.disconnect()
-  setTimeout(() => {
-    reconnex.open()
-  }, 10000)
-}, 10000)
