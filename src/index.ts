@@ -110,7 +110,8 @@ export class Reconnex extends EventEmitter {
     this.emit('send', JSON.stringify(data))
   }
 
-  public sendJSONBinary = (data: any) => {
+  public sendJSONBinary = async (data: any) => {
+    await this.waitTwitchWSConnected()
     var encoder = new TextEncoder();
     this.#ws?.send(encoder.encode(JSON.stringify(data)) as any);
   }
