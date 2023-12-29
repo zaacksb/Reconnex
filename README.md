@@ -50,7 +50,7 @@ npm install reconnex
 Import the library
 
 ```js
-import Reconnex from 'reconnex'
+import { Reconnex } from 'reconnex'
 ```
 
 instantiate the class

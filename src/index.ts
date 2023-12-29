@@ -16,7 +16,7 @@ export type ReconnexT = {
   options?: WebSocket.ClientOptions | ClientRequestArgs | undefined
 }
 
-export default class Reconnex extends EventEmitter {
+export class Reconnex extends EventEmitter {
   #connectionOpenned = false
   #sendOnConnectStrings: string[] = []
   #reconnectOpts = {
