@@ -1,6 +1,9 @@
 import { ClientRequestArgs } from 'http'
-import WebSocket from "ws"
 import EventEmitter from 'events'
+import type { WebSocket, ClientOptions, RawData } from 'ws'
+
+const runningOnNodejs: string | false = (typeof process !== 'undefined' && process.versions && process.versions.node);
+
 const sleep = (time: number = 1000) => new Promise(resolve => setTimeout(resolve, time))
 
 export type ReconnexT = {
@@ -13,7 +16,7 @@ export type ReconnexT = {
     data: any
     interval: number
   }
-  options?: WebSocket.ClientOptions | ClientRequestArgs | undefined
+  options?: ClientOptions | ClientRequestArgs | undefined
 }
 
 export class Reconnex extends EventEmitter {
@@ -45,14 +48,15 @@ export class Reconnex extends EventEmitter {
   }
 
   private connect() {
-    this.#ws = new WebSocket(this.#url, this.#options)
+    const _WebSocket = !runningOnNodejs ? window?.WebSocket : require('ws')
+    this.#ws = new _WebSocket(this.#url, this.#options)
     this.addWSListeners()
     return this.#ws
   }
 
   private addWSListeners() {
     let intervalPing: NodeJS.Timeout
-    this.#ws?.on('open', () => {
+    this.#ws?.addEventListener('open', () => {
       this.#currentRetries = 0
       this.#connectionOpenned = true
       this.#sendOnConnectStrings.forEach(data => this.send(data))
@@ -63,14 +67,19 @@ export class Reconnex extends EventEmitter {
       }
       this.emit('open', this.#url)
     })
-    this.#ws?.on('error', (err) => {
+    this.#ws?.addEventListener('error', (err) => {
       this.emit('error', err)
     })
-    this.#ws?.on('message', (buffer) => {
+    this.#ws?.addEventListener('message', (buffer) => {
       this.emit('message', buffer)
-      this.emit('text', new TextDecoder().decode(buffer as any))
+      try {
+        this.emit('text', new TextDecoder().decode(buffer.data as any))
+      } catch (e) {
+        this.emit('text', buffer.data)
+      }
     })
-    this.#ws?.on('close', async (code, reason) => {
+
+    this.#ws?.addEventListener('close', async ({ code, reason }) => {
       clearInterval(intervalPing)
       this.#currentRetries++
       this.emit('close', code, reason.toString())
@@ -91,7 +100,7 @@ export class Reconnex extends EventEmitter {
   public async waitTwitchWSConnected() {
     return new Promise(resolve => {
       setInterval(() => {
-        if (this.#ws?.readyState == WebSocket.OPEN) resolve(true)
+        if (this.#ws?.readyState == 1) resolve(true)
       }, 10)
     })
   }
@@ -129,12 +138,12 @@ export class Reconnex extends EventEmitter {
     return this.#sendOnConnectStrings
   }
 
-  public isConnected = () => this.#ws?.readyState == WebSocket.OPEN
+  public isConnected = () => this.#ws?.readyState == 1
 }
 
 
 export type onTextEvent = (text: string) => void
-export type onMessageEvent = (message: WebSocket.RawData) => void
+export type onMessageEvent = (message: RawData) => void
 export type onCloseEvent = (code: number, reason?: Buffer | string) => void
 export type onOpenEvent = (url: string) => void
 export type onMaxAttemptEvent = () => void
